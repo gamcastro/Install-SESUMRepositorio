@@ -35,7 +35,7 @@ if (-Not($repositorio)) {
     if (-Not(Get-PSDrive -Name G -ErrorAction SilentlyContinue)) {
         Write-Verbose 'Driver G não encontrado'      
         Write-Verbose 'Verificando conexão com 10.11.40.30 ...'
-        if(-Not(Test-Connection -ComputerName 10.11.40.30 -ErrorAction SilentlyContinue)){
+        if (-Not(Test-Connection -ComputerName 10.11.40.30 -ErrorAction SilentlyContinue)) {
             Write-Verbose 'Sem conexão com o servidor 10.11.40.30'
             Write-Host 'Falha na instalação do repositorio'
             exit
@@ -44,11 +44,17 @@ if (-Not($repositorio)) {
             Write-Verbose "Conexão com 10.11.40.30 OK."
             Write-Verbose 'Montando compartilhamento \\10.11.40.30\PowersehllRemoto'
             Add-CompartilhamentoRepositorioRemoto
-            Write-Verbose 'Instalando Repositorio remoto'
-            Install-RepositorioRemoto
         }
     }
+    Write-Verbose 'Drive G ok!.'
+    Write-Verbose 'Instalando Repositorio remoto'
+    Install-RepositorioRemoto
+    Write-Host "Repositorio SESUMRepositorio instalado !"
 
+}
+else {
+    Write-Verbose 'Repositório SESUMRepositorio já instalado.'
+    Write-Host 'Repositorio SESUMRepositorio já instalado.'
 }
 
 
